@@ -32,7 +32,7 @@ Kavuchi is an online store for fresh cuts of meat and fish. You can browse a var
 
 2. **Navigate to the project directory:**
    ```bash
-   cd kavuchi
+   cd kavuchi_meat_delivery
    ```
 
 3. **Install dependencies:**
