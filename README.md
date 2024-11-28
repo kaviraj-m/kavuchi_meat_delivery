@@ -1,6 +1,4 @@
-Here is the complete `README.md` file with all the sections included:
 
-```markdown
 # Kavuchi - Fresh Meat & Fish Store
 
 Kavuchi is an online store for fresh cuts of meat and fish. You can browse a variety of categories like Sea Fish, Freshwater Fish, Mutton, and Chicken. The app offers a smooth user interface, product details, best sellers, combo packs, and more.
