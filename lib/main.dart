@@ -5,6 +5,7 @@ import 'widgets/category_card.dart';
 import 'widgets/product_card.dart';
 import 'widgets/section_header.dart';
 import 'widgets/search_box.dart';
+import 'splash_screen.dart';
 
 void main() {
   runApp(KavuchiApp());
@@ -16,7 +17,7 @@ class KavuchiApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.red),
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }
@@ -24,8 +25,7 @@ class KavuchiApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   final List<Category> categories = [
     Category(name: 'Sea Fish', image: 'assets/images/sea_fish.jpg'),
-    Category(
-        name: 'Freshwater Fish', image: 'assets/images/freshwater_fish.jpg'),
+    Category(name: 'Freshwater Fish', image: 'assets/images/freshwater_fish.jpg'),
     Category(name: 'Mutton', image: 'assets/images/mutton.jpg'),
     Category(name: 'Chicken', image: 'assets/images/chicken.jpg'),
   ];
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color appBarBackground = Colors.grey.shade100;
-    Color iconColor = Colors.red;
+    Color iconColor = Colors.red; // Color for icons in AppBar and BottomNavigationBar
 
     return Scaffold(
       appBar: AppBar(
@@ -108,20 +108,34 @@ class HomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.all(8.0),
           children: [
-            // Header Text
-            Text(
-              "Let's order some fresh\ncuts for you",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+            // Header Text with specific words in red
+            RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black, // Default text color
+                ),
+                children: [
+                  TextSpan(text: "Let's "),
+                  TextSpan(
+                    text: "order", 
+                    style: TextStyle(color: Colors.red), // 'order' in red
+                  ),
+                  TextSpan(text: " some fresh\n"),
+                  TextSpan(
+                    text: "cuts", 
+                    style: TextStyle(color: Colors.red), // 'cuts' in red
+                  ),
+                  TextSpan(text: " for you"),
+                ],
               ),
             ),
             SizedBox(height: 20),
             // Search Box
             SearchBox(),
             SizedBox(height: 10),
-            // Categories
+            // Categories Section
             SectionHeader(
               title: 'Categories',
               onSeeAll: () {
@@ -154,7 +168,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            // Bestsellers
+            // Bestsellers Section
             SectionHeader(
               title: 'Bestsellers',
               onSeeAll: () {
@@ -171,7 +185,7 @@ class HomePage extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.7,
+                  childAspectRatio: 0.66,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
@@ -182,7 +196,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            // Combo Packs
+            // Combo Packs Section
             SectionHeader(
               title: 'Combo Packs',
               onSeeAll: () {
@@ -199,7 +213,7 @@ class HomePage extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.7,
+                  childAspectRatio: 0.66,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
@@ -214,7 +228,7 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.grey.shade900,
-        selectedItemColor: Colors.white,
+        selectedItemColor: Colors.red,  // Set the selected item color to red
         unselectedItemColor: Colors.grey.shade400,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
