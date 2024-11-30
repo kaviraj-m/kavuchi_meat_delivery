@@ -6,6 +6,7 @@ import 'widgets/product_card.dart';
 import 'widgets/section_header.dart';
 import 'widgets/search_box.dart';
 import 'splash_screen.dart';
+import 'pages/product_details_page.dart';
 
 void main() {
   runApp(KavuchiApp());

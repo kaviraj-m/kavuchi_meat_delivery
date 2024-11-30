@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   // Navigate to the Home Page after a delay of 3 seconds
   _navigateToHome() async {
-    await Future.delayed(Duration(seconds: 3), () {});
+    await Future.delayed(Duration(seconds: 4), () {});
     // Apply a fade transition when navigating to HomePage
     Navigator.pushReplacement(
       context,

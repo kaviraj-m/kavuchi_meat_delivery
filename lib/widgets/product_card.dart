@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
+import '../pages/product_details_page.dart'; // Import the product details page
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -11,6 +12,12 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // Navigate to product detail page
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsPage(product: product),
+          ),
+        );
       },
       child: Card(
         elevation: 5,
@@ -32,13 +39,18 @@ class ProductCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(product.name, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                  Text(product.name,
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
                   SizedBox(height: 4),
                   Text('₹${product.price}', style: TextStyle(fontSize: 12)),
                   SizedBox(height: 4),
                   Text(
                     '${product.pieces}',
-                    style: TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
