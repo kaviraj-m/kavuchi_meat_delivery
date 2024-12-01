@@ -5,9 +5,11 @@ import 'widgets/category_card.dart';
 import 'widgets/product_card.dart';
 import 'widgets/section_header.dart';
 import 'widgets/search_box.dart';
-import 'splash_screen.dart';
+import 'pages/cart_page.dart'; // Import Cart Page
 import 'pages/product_details_page.dart';
-
+import 'pages/search_page.dart';
+import 'pages/profile_page.dart'; // Import Profile Page
+import 'pages/admin_page.dart';
 void main() {
   runApp(KavuchiApp());
 }
@@ -18,7 +20,49 @@ class KavuchiApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.red),
-      home: SplashScreen(),
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0; // To track the current selected tab
+
+  final List<Widget> _pages = [
+    HomePage(),
+    SearchPage(),
+    CartPage(), // Link to Cart Page
+    ProfilePage(), // Updated to Profile Page
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _pages[_currentIndex], // Display the selected page
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index; // Update the current index
+          });
+        },
+        backgroundColor: Colors.grey.shade900,
+        selectedItemColor: Colors.red, // Set the selected item color to red
+        unselectedItemColor: Colors.grey.shade400,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart), label: 'Cart'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle), label: 'Profile'),
+        ],
+      ),
     );
   }
 }
@@ -26,7 +70,8 @@ class KavuchiApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   final List<Category> categories = [
     Category(name: 'Sea Fish', image: 'assets/images/sea_fish.jpg'),
-    Category(name: 'Freshwater Fish', image: 'assets/images/freshwater_fish.jpg'),
+    Category(
+        name: 'Freshwater Fish', image: 'assets/images/freshwater_fish.jpg'),
     Category(name: 'Mutton', image: 'assets/images/mutton.jpg'),
     Category(name: 'Chicken', image: 'assets/images/chicken.jpg'),
   ];
@@ -75,7 +120,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color appBarBackground = Colors.grey.shade100;
-    Color iconColor = Colors.red; // Color for icons in AppBar and BottomNavigationBar
+    Color iconColor = Colors.red;
 
     return Scaffold(
       appBar: AppBar(
@@ -120,12 +165,12 @@ class HomePage extends StatelessWidget {
                 children: [
                   TextSpan(text: "Let's "),
                   TextSpan(
-                    text: "order", 
+                    text: "order",
                     style: TextStyle(color: Colors.red), // 'order' in red
                   ),
                   TextSpan(text: " some fresh\n"),
                   TextSpan(
-                    text: "cuts", 
+                    text: "cuts",
                     style: TextStyle(color: Colors.red), // 'cuts' in red
                   ),
                   TextSpan(text: " for you"),
@@ -226,19 +271,6 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey.shade900,
-        selectedItemColor: Colors.red,  // Set the selected item color to red
-        unselectedItemColor: Colors.grey.shade400,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle), label: 'Profile'),
-        ],
       ),
     );
   }
